@@ -11,12 +11,6 @@ public class EFBookRepository : IBookRepository
 
     public IQueryable<Book> Books => _context.Books;
 
-    public void Add(Book book)
-    {
-        _context.Books.Add(book);
-        _context.SaveChanges();
-    }
-
     public void SaveBook(Book book)
     {
         if (book.Id == 0)
