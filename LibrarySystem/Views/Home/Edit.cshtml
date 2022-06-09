@@ -1,0 +1,35 @@
+﻿@model Book
+
+@{
+    ViewBag.Title = "Редактирование книги";
+}
+
+<div class="container-fluid" style="max-width: 700px;">
+    <form asp-action="Edit" method="post">
+    <input type="hidden" asp-for="Id" />
+    <div class="mt-2">
+        <label asp-for="Author" class="form-label">Автор</label>
+        <input asp-for="Author" class="form-control"/>
+        <span asp-validation-for="Author" class="text-danger"></span>
+    </div>
+    <div class="mt-2">
+        <label asp-for="Title" class="form-label">Название</label>
+        <input asp-for="Title" class="form-control"/>
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="mt-2">
+        <label asp-for="Year" class="form-label">Год</label>
+        <input asp-for="Year" class="form-control"/>
+        <span asp-validation-for="Year" class="text-danger"></span>
+    </div>
+    <div class="mt-2">
+        <label asp-for="Genre" class="form-label">Жанр</label>
+        <input asp-for="Genre" class="form-control"/>
+        <span asp-validation-for="Genre" class="text-danger"></span>
+    </div>
+    <div class="mt-2">
+        <button class="btn btn-primary" type="submit">Сохранить</button>
+        <a asp-action="Index" class="btn btn-secondary">Отменить</a>
+    </div>
+</form>
+</div>

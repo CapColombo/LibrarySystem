@@ -1,0 +1,34 @@
+﻿@{
+    ViewBag.Title = "Регистрация";
+}
+
+@model LibrarySystem.Models.ViewModels.RegisterModel
+
+<div class="container-fluid" style="max-width: 500px;">
+    <h3 class="text-center text-primary">Регистрация</h3>
+
+<form asp-action="Register" asp-controller="Account" asp-antiforgery="true">
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+    <div>
+        <div class="mt-2">
+            <label class="form-label">Введите Логин</label>
+            <input type="text" asp-for="Login" class="form-control" />
+            <span class="text-danger" asp-validation-for="Login"></span>
+        </div>
+        <div class="mt-2">
+            <label class="form-label">Введите Пароль</label>
+            <input type="password" asp-for="Password" class="form-control" />
+            <span class="text-danger" asp-validation-for="Password"></span>
+        </div>
+        <div class="mt-2">
+            <label class="form-label">Подтвердите пароль</label>
+            <input type="password" asp-for="ConfirmPassword" class="form-control" />
+            <span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+        </div>
+        <div class="text-center mt-2">
+            <input class="btn btn-primary" type="submit" value="Зарегистрироваться"/>
+        </div>
+    </div>
+</form>
+</div>

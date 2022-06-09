@@ -1,0 +1,44 @@
+﻿@{
+    ViewBag.Title = "Библиотека";
+}
+
+@model IQueryable<Book>
+
+<div class="container-fluid" style="max-width: 1000px;">
+
+    <h3 class="text-center text-primary">Библиотека</h3>
+
+    <div class="text-center">
+    <a asp-action="Create" class="btn btn-secondary">Добавить книгу</a>
+    </div>
+
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Автор</th>
+            <th>Название</th>
+            <th>Год издания</th>
+            <th>Жанр</th>
+            <th></th>
+        </tr>
+
+        @foreach (var book in Model)
+        {
+            <tr>
+                <td>@book.Id</td>
+                <td>@book.Author</td>
+                <td>@book.Title</td>
+                <td>@book.Year</td>
+                <td>@book.Genre</td>
+                <td class="text-center">
+                    <form asp-action="Delete" method="post">
+                        <a asp-action="Edit" class="btn btn-sm btn-warning" asp-route-bookId="@book.Id">Изменить</a>
+                        <input type="hidden" name="bookId" value="@book.Id" />
+                        <button type="submit" class="btn btn-sm btn-danger">Удалить</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </table>
+
+</div>

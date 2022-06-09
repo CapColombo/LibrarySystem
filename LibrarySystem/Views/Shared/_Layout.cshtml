@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" asp-href-include="/lib/bootstrap/**/*.min.css"
+                           asp-href-exclude="**/*-reboot,**/*-grid*"/>
+    <link rel="stylesheet" asp-href-include="/lib/font-awesome/css/*.css"/>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+
+    <div class="navbar navbar-expand-lg bg-dark" role="navigation">
+        <div class="container-fluid">
+            <a class="navbar-brand text-white" asp-action="Index" asp-controller="Home">БИБЛИОТЕКА</a>
+            <div class="text-start text-white">
+                @User?.Identity?.Name 👤
+                <a class="btn btn-dark text-white" asp-action="Logout" asp-controller="Account">Выйти</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="m-1 p-1">
+        @if (TempData["message"] != null)
+        {
+        <div class="alert alert-success text-center">@TempData["message"]</div>
+        }
+        @RenderBody()
+    </div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+</html>
