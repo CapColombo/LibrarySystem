@@ -1,14 +1,19 @@
+using JavaScriptEngineSwitcher.ChakraCore;
+using JavaScriptEngineSwitcher.Extensions.MsDependencyInjection;
 using LibrarySystem.Models;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
+using React.AspNet;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddTransient<IBookRepository, EFBookRepository>();
 builder.Services.AddTransient<IUserRepository, EFUserRepository>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddMvc();
-builder.Services.AddMemoryCache();
-builder.Services.AddSession();
+builder.Services.AddReact(); // Подключение React
+builder.Services.AddJsEngineSwitcher(op => // Подключение движка  JS - ChakraCore
+    op.DefaultEngineName = ChakraCoreJsEngine.EngineName).AddChakraCore();
 
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<LibraryDbContext>(s => s.UseSqlServer(connectionString));
@@ -22,8 +27,8 @@ if (app.Environment.IsDevelopment())
     app.UseDeveloperExceptionPage();
 
 app.UseStatusCodePages();
+app.UseReact(config => { });
 app.UseStaticFiles();
-app.UseSession();
 app.UseAuthentication();
 app.UseAuthorization();
 

@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace LibrarySystem.Controllers;
 
+[Authorize]
 public class HomeController : Controller
 {
     private readonly IBookRepository _repository;
@@ -13,13 +14,17 @@ public class HomeController : Controller
         _repository = repository;
     }
 
-    [Authorize]
     public IActionResult Index() => View(_repository.Books);
 
-    [Authorize]
-    public ViewResult Create() => View("Edit", new Book());
+    public ActionResult GetBooks() => Json(_repository.Books);
 
-    [Authorize]
+    [HttpPost]
+    public IActionResult SaveBook(Book book)
+    {
+        _repository.SaveBook(book);
+        return RedirectToAction("Index");
+    }
+
     public ViewResult Edit(int bookId) => View(_repository.Books
         .FirstOrDefault(b => b.Id == bookId));
 

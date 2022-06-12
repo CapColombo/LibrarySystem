@@ -5,6 +5,14 @@
     {
       "library": "bootstrap@5.1.3",
       "destination": "wwwroot/lib/bootstrap/"
+    },
+    {
+      "library": "react@18.1.0",
+      "destination": "wwwroot/lib/react/"
+    },
+    {
+      "library": "react-dom@18.1.0",
+      "destination": "wwwroot/lib/react-dom/"
     }
   ]
 }
